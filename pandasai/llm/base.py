@@ -6,7 +6,7 @@ from typing import Optional
 
 import astor
 
-from ..constants import END_CODE_TAG, START_CODE_TAG
+from ..constants import END_CODE_TAG, START_CODE_TAG, WHITELISTED_LIBRARIES
 from ..exceptions import (
     APIKeyNotFoundError,
     MethodNotImplementedError,
@@ -37,10 +37,13 @@ class LLM:
         new_body = [
             node
             for node in tree.body
-            if not isinstance(node, (ast.Import, ast.ImportFrom))
+            if not (
+                isinstance(node, (ast.Import, ast.ImportFrom))
+                and any(alias.name in WHITELISTED_LIBRARIES for alias in node.names)
+            )
         ]
         new_tree = ast.Module(body=new_body)
-        return astor.to_source(new_tree)
+        return astor.to_source(new_tree).strip()
 
     def _polish_code(self, code: str) -> str:
         """
@@ -57,8 +60,8 @@ class LLM:
             code = re.sub(r"^(python|py)", "", code)
         if re.match(r"^`.*`$", code):
             code = re.sub(r"^`(.*)`$", r"\1", code)
-        self._remove_imports(code)
         code = code.strip()
+        code = self._remove_imports(code)
         return code
 
     def _is_python_code(self, string):
@@ -83,24 +86,29 @@ class LLM:
             str: Extracted code from the response
         """
         code = response
-        if len(response.split(separator)) > 1:
-            code = response.split(separator)[1]
-        match = re.search(rf"{START_CODE_TAG}(.*){END_CODE_TAG}", code, re.DOTALL)
+        match = re.search(
+            rf"{START_CODE_TAG}(.*)({END_CODE_TAG}|{END_CODE_TAG.replace('<', '</')})",
+            code,
+            re.DOTALL,
+        )
         if match:
             code = match.group(1).strip()
+        if len(code.split(separator)) > 1:
+            code = code.split(separator)[1]
         code = self._polish_code(code)
         if not self._is_python_code(code):
             raise NoCodeFoundError("No code found in the response")
 
         return code
 
-    def call(self, instruction: str, value: str) -> None:
+    def call(self, instruction: str, value: str, suffix: str = "") -> str:
         """
         Execute the LLM with given prompt.
 
         Args:
             instruction (str): Prompt
             value (str): Value
+            suffix (str, optional): Suffix. Defaults to "".
 
         Raises:
             MethodNotImplementedError: Call method has not been implemented
@@ -114,4 +122,4 @@ class LLM:
         Returns:
             str: Code
         """
-        return self._extract_code(self.call(instruction, prompt))
+        return self._extract_code(self.call(instruction, prompt, suffix="\n\nCode:\n"))
