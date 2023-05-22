@@ -88,6 +88,7 @@ class TestPandasAI:
         df = pd.DataFrame()
         pandasai = PandasAI(llm=llm)
         assert pandasai.run_code("1 + 1", df) == 2
+        assert pandasai.last_run_code == "1 + 1"
 
     def test_run_code_invalid_code(self):
         df = pd.DataFrame()
@@ -126,7 +127,8 @@ Empty DataFrame
 Columns: [country]
 Index: [].
 
-Return the python code (do not import anything) and make sure to prefix the requested python code with <startCode> exactly and suffix the code with <endCode> exactly to get the answer to the following question:
+When asked about the data, your response should include a python code that describes the dataframe `df`.
+Using the provided dataframe, df, return the python code and make sure to prefix the requested python code with <startCode> exactly and suffix the code with <endCode> exactly to get the answer to the following question:
 How many countries are in the dataframe?
 
 Code:
@@ -188,7 +190,8 @@ This is the result of `print(df.head(5))`:
 1  United Kingdom
 2          France.
 
-Return the python code (do not import anything) and make sure to prefix the requested python code with <startCode> exactly and suffix the code with <endCode> exactly to get the answer to the following question:
+When asked about the data, your response should include a python code that describes the dataframe `df`.
+Using the provided dataframe, df, return the python code and make sure to prefix the requested python code with <startCode> exactly and suffix the code with <endCode> exactly to get the answer to the following question:
 How many countries are in the dataframe?
 
 Code:
@@ -247,3 +250,12 @@ print(os.listdir())
         pandasai._llm._output = malicious_code
         assert pandasai.remove_unsafe_imports(malicious_code) == "print(os.listdir())"
         assert pandasai.run_code(malicious_code, pd.DataFrame()) == ""
+        assert pandasai.last_run_code == "print(os.listdir())"
+
+    def test_remove_df_overwrites(self, pandasai):
+        malicious_code = """
+df = pd.DataFrame([1,2,3])
+print(df)
+"""
+        pandasai._llm._output = malicious_code
+        assert pandasai.remove_df_overwrites(malicious_code) == "print(df)"

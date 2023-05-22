@@ -1,11 +1,13 @@
 """ PandasAI is a wrapper around a LLM to make dataframes convesational """
 import ast
 import io
+import re
 from contextlib import redirect_stdout
 from datetime import date
 from typing import Optional
 
 import astor
+import matplotlib.pyplot as plt
 import pandas as pd
 
 from .constants import (
@@ -30,7 +32,8 @@ You are provided with a pandas dataframe (df) with {num_rows} rows and {num_colu
 This is the result of `print(df.head({rows_to_display}))`:
 {df_head}.
 
-Return the python code (do not import anything) and make sure to prefix the requested python code with {START_CODE_TAG} exactly and suffix the code with {END_CODE_TAG} exactly to get the answer to the following question:
+When asked about the data, your response should include a python code that describes the dataframe `df`.
+Using the provided dataframe, df, return the python code and make sure to prefix the requested python code with {START_CODE_TAG} exactly and suffix the code with {END_CODE_TAG} exactly to get the answer to the following question:
 """
     _response_instruction: str = """
 Question: {question}
@@ -71,6 +74,7 @@ Make sure to prefix the requested python code with {START_CODE_TAG} exactly and 
         "rows_to_display": None,
     }
     last_code_generated: Optional[str] = None
+    last_run_code: Optional[str] = None
     code_output: Optional[str] = None
 
     def __init__(
@@ -167,6 +171,25 @@ Code generated:
             self.log(f"Conversational answer: {answer}")
         return answer
 
+    def __call__(
+        self,
+        data_frame: pd.DataFrame,
+        prompt: str,
+        is_conversational_answer: bool = None,
+        show_code: bool = False,
+        anonymize_df: bool = True,
+        use_error_correction_framework: bool = True,
+    ) -> str:
+        """Run the LLM with the given prompt"""
+        return self.run(
+            data_frame,
+            prompt,
+            is_conversational_answer,
+            show_code,
+            anonymize_df,
+            use_error_correction_framework,
+        )
+
     def remove_unsafe_imports(self, code: str) -> str:
         """Remove non-whitelisted imports from the code to prevent malicious code execution"""
 
@@ -182,6 +205,30 @@ Code generated:
         new_tree = ast.Module(body=new_body)
         return astor.to_source(new_tree).strip()
 
+    def remove_df_overwrites(self, code: str) -> str:
+        """Remove df declarations from the code to prevent malicious code execution"""
+
+        tree = ast.parse(code)
+        new_body = [
+            node
+            for node in tree.body
+            if not (
+                isinstance(node, ast.Assign)
+                and isinstance(node.targets[0], ast.Name)
+                and node.targets[0].id == "df"
+            )
+        ]
+        new_tree = ast.Module(body=new_body)
+        return astor.to_source(new_tree).strip()
+
+    def clean_code(self, code: str) -> str:
+        """Clean the code to prevent malicious code execution"""
+
+        # TODO: avoid iterating over the code twice # pylint: disable=W0511
+        code = self.remove_unsafe_imports(code)
+        code = self.remove_df_overwrites(code)
+        return code
+
     def run_code(
         self,
         code: str,
@@ -191,18 +238,29 @@ Code generated:
         # pylint: disable=W0122 disable=W0123 disable=W0702:bare-except
         """Run the code in the current context and return the result"""
 
+        # Get the code to run removing unsafe imports and df overwrites
+        code_to_run = self.clean_code(code)
+        self.last_run_code = code_to_run
+        self.log(
+            f"""
+Code running:
+```
+{code_to_run}
+```"""
+        )
+
         # Redirect standard output to a StringIO buffer
         with redirect_stdout(io.StringIO()) as output:
-            # Execute the code
             count = 0
-            code_to_run = self.remove_unsafe_imports(code)
             while count < self._max_retries:
                 try:
+                    # Execute the code
                     exec(
                         code_to_run,
                         {
                             "pd": pd,
                             "df": data_frame,
+                            "plt": plt,
                             "__builtins__": {
                                 **{
                                     builtin: __builtins__[builtin]
@@ -243,8 +301,12 @@ Code generated:
         # Evaluate the last line and return its value or the captured output
         lines = code.strip().split("\n")
         last_line = lines[-1].strip()
-        if last_line.startswith("print(") and last_line.endswith(")"):
-            last_line = last_line[6:-1]
+
+        pattern = r"^print\((.*)\)$"
+        match = re.match(pattern, last_line)
+        if match:
+            last_line = match.group(1)
+
         try:
             return eval(
                 last_line,
