@@ -71,3 +71,27 @@ Citations:
 [6] https://www.ppatk.go.id/siaran_pers/read/953/memahami-transaksi-keuangan-mencurigakan.html
 
 By Perplexity at https://www.perplexity.ai/search/55f11208-37ac-4027-bf95-e444cfcb4e13
+
+### Pola yang dapat dijadikan Acuan indikasi pencucian Uang
+
+Berikut adalah beberapa contoh transaksi keuangan yang dapat digunakan sebagai indikasi pencucian uang, menurut hasil pencarian:
+
+1. Transfer dana tanpa informasi yang jelas tentang sumber dan tujuan dana[1].
+2. Transaksi dengan jumlah uang yang tidak biasa besar[2].
+3. Transaksi dengan pihak lawan dari negara yang dikenal karena aktivitas pencucian uang[2].
+4. Transaksi yang melibatkan individu atau entitas yang memiliki riwayat aktivitas kriminal atau berada dalam daftar pantauan pemerintah[2].
+5. Transaksi yang melibatkan penggunaan uang tunai, terutama dalam jumlah besar[3].
+6. Transaksi yang tidak konsisten dengan profil keuangan pelanggan yang diketahui atau aktivitas biasa[3].
+7. Transaksi yang melibatkan struktur yang kompleks atau banyak pihak yang membuatnya sulit untuk melacak asal dan tujuan dana[3].
+8. Transaksi yang melibatkan sektor bisnis berisiko tinggi, seperti kasino atau bisnis layanan uang[4].
+9. Transaksi yang melibatkan negara atau wilayah berisiko tinggi yang dikenal karena pendanaan teroris atau aktivitas pencucian uang[5].
+10. Transaksi yang melibatkan penggunaan akun atau entitas anonim atau fiktif[2].
+
+Situs:
+[1] https://www.regulasip.id/book/11572/read
+[2] https://www.ppatk.go.id/siaran_pers/read/953/memahami-transaksi-keuangan-mencurigakan.html
+[3] https://www.regulasip.id/electronic-book/9886
+[4] https://jdih.kemenkeu.go.id/fulltext/2010/8TAHUN2010UU.HTM
+[5] https://www.bi.go.id/id/fungsi-utama/sistem-pembayaran/anti-pencucian-uang-dan-pencegahan-pendanaan-terrorisme/default.aspx
+
+Oleh Perplexity di https://www.perplexity.ai/search/5db3ce1a-f882-476f-a18a-2d4806224c20
