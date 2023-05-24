@@ -43,3 +43,30 @@ Dalam tugas prediksi data, library Pandas sering digunakan untuk mempersiapkan d
 | `df['column'].shift(periods)` | Menggeser nilai kolom ke depan atau ke belakang. | "Geser nilai dalam kolom ini sebanyak 'periods' posisi." |
 
 Fungsi-fungsi di atas sangat umum digunakan dalam analisis dan prediksi data dengan Pandas. 
+
+Pandas secara native memiliki kemampuan untuk melakukan visualisasi data sederhana, namun untuk visualisasi yang lebih kompleks biasanya digabungkan dengan library seperti Matplotlib atau Seaborn. Berikut ini beberapa fungsi yang paling umum digunakan dalam visualisasi data:
+
+| Fungsi  | Deskripsi | Prompt/Instruksi |
+| ------------- | ------------- | ------------- |
+| `df['column'].plot(kind='type')` | Membuat plot dasar dari kolom tertentu. | "Buat plot jenis 'type' dari kolom ini." |
+| `df['column'].hist(bins=n)` | Membuat histogram dari kolom tertentu. | "Buat histogram dari kolom ini dengan n bins." |
+| `df.boxplot(column='column')` | Membuat boxplot dari kolom tertentu. | "Buat boxplot dari kolom ini." |
+| `df.plot.scatter(x='column1', y='column2')` | Membuat scatter plot dari dua kolom. | "Buat scatter plot dengan kolom ini sebagai sumbu x dan kolom itu sebagai sumbu y." |
+| `df['column'].value_counts().plot.bar()` | Membuat bar plot dari frekuensi nilai dalam kolom. | "Buat bar plot dari frekuensi nilai dalam kolom ini." |
+
+Berikut beberapa fungsi yang melibatkan library Matplotlib dan Seaborn:
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+| Fungsi  | Deskripsi | Prompt/Instruksi |
+| ------------- | ------------- | ------------- |
+| `sns.countplot(x='column', data=df)` | Membuat countplot (sejenis bar plot) dengan Seaborn. | "Buat countplot dari kolom ini menggunakan Seaborn." |
+| `sns.heatmap(df.corr(), annot=True)` | Membuat heatmap dari korelasi antar kolom dalam DataFrame. | "Buat heatmap dari korelasi antar kolom dalam DataFrame ini." |
+| `sns.pairplot(df)` | Membuat pairplot dari semua kolom dalam DataFrame. | "Buat pairplot dari semua kolom dalam DataFrame ini." |
+| `plt.hist(df['column'], bins=n)` | Membuat histogram dengan Matplotlib. | "Buat histogram dari kolom ini dengan n bins menggunakan Matplotlib." |
+| `sns.boxplot(x='column1', y='column2', data=df)` | Membuat boxplot dengan Seaborn. | "Buat boxplot dengan kolom ini sebagai sumbu x dan kolom itu sebagai sumbu y menggunakan Seaborn." |
+
+Perlu dicatat bahwa fungsi-fungsi ini hanya sebagian kecil dari yang tersedia dalam library Python untuk visualisasi data. Selalu ingat untuk memahami data Anda dan memilih jenis visualisasi yang paling tepat.
