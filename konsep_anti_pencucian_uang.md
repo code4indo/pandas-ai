@@ -1,3 +1,5 @@
+
+### Tiga Tahap proses Pencucian Uang
 Tiga tahapan dalam proses pencucian uang, sesuai dengan pendapat Suzumura dan Kanezash:
 
 1. **Tahap Penempatan**: Pada tahap ini, pelaku pencucian uang memasukkan uang "kotor" (hasil kegiatan ilegal) ke dalam sistem finansial. Strategi yang mungkin digunakan termasuk memecah jumlah uang tunai besar menjadi jumlah yang lebih kecil untuk disetor langsung ke dalam rekening bank atau membeli instrumen moneter seperti cek atau wesel pos. Taktik lain yang mungkin digunakan adalah mencampur uang tunai ilegal dari suatu kejahatan ke dalam penghasilan sah dari suatu bisnis, dan "smurfing", di mana jumlah uang kecil di bawah batas pelaporan anti pencucian uang dimasukkan ke dalam rekening bank atau kartu kredit dan digunakan untuk membayar biaya.
@@ -49,3 +51,23 @@ Untuk menemukan pola transaksi keuangan, dapat menggunakan berbagai algoritma da
 Penting untuk dicatat bahwa saat bekerja dengan data transaksi keuangan, pastikan untuk mematuhi persyaratan dan regulasi keamanan data seperti GLBA/FFIEC. Ini termasuk enkripsi data sensitif dan manajemen kunci yang tepat untuk memastikan keamanan dan kerahasiaan
 
 data. [Sumber 1](https://info.townsendsecurity.com/encryption-requirements-for-banks-financial-services)
+
+### Algoritma dan metode yang dapat digunakan untuk menemukan pola transaksi keuangan terutama pencucian uang:
+Berikut ini beberapa algoritma dan metode yang dapat digunakan untuk menemukan pola transaksi keuangan terutama pencucian uang:
+1. Analisis transaksi keuangan untuk mendeteksi adanya transaksi keuangan mencurigakan (TKM) [1][2]. TKM adalah transaksi yang cenderung menyimpang dari profil, karakteristik, atau kebiasaan pola transaksi dari pengguna jasa yang bersangkutan[2][3].
+2. Pedoman identifikasi transaksi keuangan mencurigakan bagi penyedia jasa keuangan[1]. Pedoman ini diterbitkan oleh Pusat Pelaporan dan Analisis Transaksi Keuangan (PPATK) dan menjelaskan cara mendeteksi TKM sejak dini.
+3. Identifikasi contoh-contoh transaksi keuangan yang mencurigakan berkaitan dengan tindak pidana pencucian uang[4]. Beberapa contohnya adalah transfer dana tanpa disertai informasi yang jelas mengenai identitas pengirim atau transfer dana dari luar negeri untuk tujuan investasi.
+4. Menggunakan indikator TKM untuk mengidentifikasi transaksi keuangan mencurigakan terkait pendanaan terorisme[5].
+5. Melakukan analisis data menggunakan algoritma Machine Learning untuk menemukan pola transaksi yang mencurigakan[6]. Metode ini membutuhkan data yang terstruktur dan dapat digunakan untuk memprediksi adanya transaksi yang mencurigakan pada masa depan.
+
+Catatan: PPATK juga menerbitkan beberapa pedoman dan aturan terkait pelaporan transaksi keuangan mencurigakan yang dapat membantu dalam mendeteksi adanya tindak pencucian uang[6][1][2].
+
+Citations:
+[1] https://www.regulasip.id/electronic-book/9886
+[2] https://nasional.tempo.co/read/1626646/3-jenis-pelaporan-ke-ppatk-tentang-tindak-pidana-pencucian-uang
+[3] https://www.hukumonline.com/kamus/t/transaksi-keuangan-mencurigakan
+[4] https://www.regulasip.id/book/11572/read
+[5] https://jdihn.go.id/files/468/SE-indikator-TKM-bagi-PJK.pdf
+[6] https://www.ppatk.go.id/siaran_pers/read/953/memahami-transaksi-keuangan-mencurigakan.html
+
+By Perplexity at https://www.perplexity.ai/search/55f11208-37ac-4027-bf95-e444cfcb4e13
