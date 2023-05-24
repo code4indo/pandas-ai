@@ -8,6 +8,7 @@ Tiga tahapan dalam proses pencucian uang, sesuai dengan pendapat Suzumura dan Ka
 
 Teks tersebut juga mencatat bahwa dalam praktiknya, sering kali ada tumpang tindih antara ketiga tahapan ini dan cakupan sebenarnya dari pencucian uang dapat sulit dikenali. Otoritas anti pencucian uang berfokus pada asal dan tujuan dana, karena proses pencucian uang dapat dikaitkan dengan pendanaan terorisme dan kejahatan terorganisir serius lainnya. Akibatnya, regulasi pencucian uang sangat ketat dan sering diperbarui.
 
+### Indikator Pencucian Uang 
 
 Pencucian uang sering kali sulit dideteksi karena pelakunya menggunakan berbagai metode yang canggih untuk menyembunyikan asal-usul uang tersebut. Meskipun demikian, ada beberapa indikator atau tanda-tanda yang bisa menunjukkan kemungkinan adanya pencucian uang. Berikut beberapa contohnya:
 
