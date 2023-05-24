@@ -53,16 +53,6 @@ Pandas secara native memiliki kemampuan untuk melakukan visualisasi data sederha
 | `df.boxplot(column='column')` | Membuat boxplot dari kolom tertentu. | "Buat boxplot dari kolom ini." |
 | `df.plot.scatter(x='column1', y='column2')` | Membuat scatter plot dari dua kolom. | "Buat scatter plot dengan kolom ini sebagai sumbu x dan kolom itu sebagai sumbu y." |
 | `df['column'].value_counts().plot.bar()` | Membuat bar plot dari frekuensi nilai dalam kolom. | "Buat bar plot dari frekuensi nilai dalam kolom ini." |
-
-Berikut beberapa fungsi yang melibatkan library Matplotlib dan Seaborn:
-
-```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-```
-
-| Fungsi  | Deskripsi | Prompt/Instruksi |
-| ------------- | ------------- | ------------- |
 | `sns.countplot(x='column', data=df)` | Membuat countplot (sejenis bar plot) dengan Seaborn. | "Buat countplot dari kolom ini menggunakan Seaborn." |
 | `sns.heatmap(df.corr(), annot=True)` | Membuat heatmap dari korelasi antar kolom dalam DataFrame. | "Buat heatmap dari korelasi antar kolom dalam DataFrame ini." |
 | `sns.pairplot(df)` | Membuat pairplot dari semua kolom dalam DataFrame. | "Buat pairplot dari semua kolom dalam DataFrame ini." |
