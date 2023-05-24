@@ -60,3 +60,6 @@ Pandas secara native memiliki kemampuan untuk melakukan visualisasi data sederha
 | `sns.boxplot(x='column1', y='column2', data=df)` | Membuat boxplot dengan Seaborn. | "Buat boxplot dengan kolom ini sebagai sumbu x dan kolom itu sebagai sumbu y menggunakan Seaborn." |
 
 Perlu dicatat bahwa fungsi-fungsi ini hanya sebagian kecil dari yang tersedia dalam library Python untuk visualisasi data. Selalu ingat untuk memahami data Anda dan memilih jenis visualisasi yang paling tepat.
+
+
+
