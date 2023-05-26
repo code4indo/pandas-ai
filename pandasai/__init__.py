@@ -23,48 +23,12 @@ from .prompts.generate_response import GenerateResponsePrompt
 class PandasAI:
     """PandasAI is a wrapper around a LLM to make dataframes conversational"""
 
-<<<<<<< HEAD
-    _task_instruction: str = """
-Today is {today_date}.
-You are provided with a pandas dataframe (df) with {num_rows} rows and {num_columns} columns.
-This is the result of `print(df.head({rows_to_display}))`:
-{df_head}.
-
-When asked about the data, your response should include a python code that add line df = dataframe, 
-it is forbidden to use df from direct csv e with {END_CODE_TAG} exactly to get the answer to the following question:"""
-
-    _response_instruction: str = """
-Question: {question}
-Answer: {answer}
-
-Rewrite the answer to the question in a conversational way.
-"""
-
-    _error_correct_instruction: str = """
-Today is {today_date}.
-You are provided with a pandas dataframe (df) with {num_rows} rows and {num_columns} columns.
-This is the result of `print(df.head({rows_to_display}))`:
-{df_head}.
-
-The user asked the following question:
-{question}
-
-You generated this python code:
-{code}
-
-It fails with the following error:
-{error_returned}
-
-Correct the python code and return a new python code (do not import anything) that fixes the above mentioned error. Do not generate the same code again.
-Make sure to prefix the requested python code with {START_CODE_TAG} exactly and suffix the code with {END_CODE_TAG} exactly.
-    """
-
     _llm: LLM
     _verbose: bool = False
     _is_conversational_answer: bool = True
     _enforce_privacy: bool = False
     _max_retries: int = 3
-    _is_notebook: bool = True
+    _is_notebook: bool = False
     _original_instructions: dict = {
         "question": None,
         "df_head": None,
@@ -78,11 +42,11 @@ Make sure to prefix the requested python code with {START_CODE_TAG} exactly and 
     last_error: Optional[str] = None
 
     def __init__(
-        self,
-        llm=None,
-        conversational=True,
-        verbose=False,
-        enforce_privacy=False,
+            self,
+            llm=None,
+            conversational=True,
+            verbose=False,
+            enforce_privacy=False,
     ):
         if llm is None:
             raise LLMNotFoundError(
@@ -107,48 +71,17 @@ Make sure to prefix the requested python code with {START_CODE_TAG} exactly and 
         return self._llm.call(instruction, "")
 
     def run(
-        self,
-        data_frame: pd.DataFrame,
-        prompt: str,
-        is_conversational_answer: bool = None,
-        show_code: bool = False,
-        anonymize_df: bool = True,
-        use_error_correction_framework: bool = True,
+            self,
+            data_frame: pd.DataFrame,
+            prompt: str,
+            is_conversational_answer: bool = None,
+            show_code: bool = False,
+            anonymize_df: bool = True,
+            use_error_correction_framework: bool = True,
     ) -> str:
         """Run the LLM with the given prompt"""
         self.log(f"Running PandasAI with {self._llm.type} LLM...")
 
-<<<<<<< HEAD
-        rows_to_display = 0 if self._enforce_privacy else 5
-
-        df_head = data_frame.head(rows_to_display)
-        if anonymize_df:
-            df_head = anonymize_dataframe_head(df_head)
-
-        code = self._llm.generate_code(
-            self._task_instruction.format(
-                today_date=date.today(),
-                df_head=df_head,
-                num_rows=data_frame.shape[0],
-                num_columns=data_frame.shape[1],
-                rows_to_display=rows_to_display,
-                START_CODE_TAG=START_CODE_TAG,
-                END_CODE_TAG=END_CODE_TAG,
-
-            ),
-            prompt,
-        )
-        self._original_instructions = {
-            "question": prompt,
-            "df_head": df_head,
-            "num_rows": data_frame.shape[0],
-            "num_columns": data_frame.shape[1],
-            "rows_to_display": rows_to_display,
-        }
-        self.last_code_generated = code
-        self.log(
-            f"""
-=======
         try:
             rows_to_display = 0 if self._enforce_privacy else 5
 
@@ -176,7 +109,6 @@ Make sure to prefix the requested python code with {START_CODE_TAG} exactly and 
             self.last_code_generated = code
             self.log(
                 f"""
->>>>>>> 3bc37b83ea736077792c78dc3fecf21528c2d161
 Code generated:
 ```
 {code}
@@ -207,13 +139,13 @@ Code generated:
             )
 
     def __call__(
-        self,
-        data_frame: pd.DataFrame,
-        prompt: str,
-        is_conversational_answer: bool = None,
-        show_code: bool = False,
-        anonymize_df: bool = True,
-        use_error_correction_framework: bool = True,
+            self,
+            data_frame: pd.DataFrame,
+            prompt: str,
+            is_conversational_answer: bool = None,
+            show_code: bool = False,
+            anonymize_df: bool = True,
+            use_error_correction_framework: bool = True,
     ) -> str:
         """Run the LLM with the given prompt"""
         return self.run(
@@ -229,17 +161,17 @@ Code generated:
         """Remove non-whitelisted imports from the code to prevent malicious code execution"""
 
         return (
-            isinstance(node, (ast.Import, ast.ImportFrom))
-            and any(alias.name not in WHITELISTED_LIBRARIES for alias in node.names)
+                isinstance(node, (ast.Import, ast.ImportFrom))
+                and any(alias.name not in WHITELISTED_LIBRARIES for alias in node.names)
         )
 
     def is_df_overwrite(self, node: ast.stmt) -> str:
         """Remove df declarations from the code to prevent malicious code execution"""
 
         return (
-            isinstance(node, ast.Assign)
-            and isinstance(node.targets[0], ast.Name)
-            and node.targets[0].id == "df"
+                isinstance(node, ast.Assign)
+                and isinstance(node.targets[0], ast.Name)
+                and node.targets[0].id == "df"
         )
 
     def clean_code(self, code: str) -> str:
@@ -251,7 +183,7 @@ Code generated:
             node
             for node in tree.body
             if not (
-                self.is_unsafe_import(node) or self.is_df_overwrite(node)
+                    self.is_unsafe_import(node) or self.is_df_overwrite(node)
             )
         ]
 
@@ -259,10 +191,10 @@ Code generated:
         return astor.to_source(new_tree).strip()
 
     def run_code(
-        self,
-        code: str,
-        data_frame: pd.DataFrame,
-        use_error_correction_framework: bool = True,
+            self,
+            code: str,
+            data_frame: pd.DataFrame,
+            use_error_correction_framework: bool = True,
     ) -> str:
         # pylint: disable=W0122 disable=W0123 disable=W0702:bare-except
         """Run the code in the current context and return the result"""
