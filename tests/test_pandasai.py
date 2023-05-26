@@ -8,7 +8,7 @@ import pandas as pd
 import pytest
 
 from pandasai import PandasAI
-from pandasai.exceptions import LLMNotFoundError
+from pandasai.exceptions import LLMNotFoundError, NoCodeFoundError
 from pandasai.llm.fake import FakeLLM
 
 
@@ -37,10 +37,7 @@ class TestPandasAI:
     def test_conversational_answer(self, pandasai, llm):
         result = "2"
         llm._output = result
-        assert (
-            pandasai.conversational_answer("What is the sum of 1 + 1?", "1 + 1", 2)
-            == result
-        )
+        assert pandasai.conversational_answer("What is the sum of 1 + 1?", 2) == result
 
     def test_run(self, pandasai, llm):
         df = pd.DataFrame()
@@ -102,14 +99,14 @@ class TestPandasAI:
     def test_conversational_answer_with_privacy_enforcement(self, pandasai, llm):
         pandasai._enforce_privacy = True
         llm.call = Mock(return_value="The answer is 2")
-        assert pandasai.conversational_answer("How much does 1 + 1 do?", "", 2) == 2
+        assert pandasai.conversational_answer("How much does 1 + 1 do?", 2) == 2
         llm.call.assert_not_called()
 
     def test_conversational_answer_without_privacy_enforcement(self, pandasai, llm):
         pandasai._enforce_privacy = False
         llm.call = Mock(return_value="The answer is 2")
         assert (
-            pandasai.conversational_answer("How much does 1 + 1 do?", "", 2)
+            pandasai.conversational_answer("How much does 1 + 1 do?", 2)
             == "The answer is 2"
         )
         llm.call.assert_called()
@@ -248,7 +245,7 @@ import os
 print(os.listdir())
 """
         pandasai._llm._output = malicious_code
-        assert pandasai.remove_unsafe_imports(malicious_code) == "print(os.listdir())"
+        assert pandasai.clean_code(malicious_code) == "print(os.listdir())"
         assert pandasai.run_code(malicious_code, pd.DataFrame()) == ""
         assert pandasai.last_run_code == "print(os.listdir())"
 
@@ -258,4 +255,16 @@ df = pd.DataFrame([1,2,3])
 print(df)
 """
         pandasai._llm._output = malicious_code
-        assert pandasai.remove_df_overwrites(malicious_code) == "print(df)"
+        assert pandasai.clean_code(malicious_code) == "print(df)"
+
+    def test_exception_handling(self, pandasai):
+        pandasai.run_code = Mock(
+            side_effect=NoCodeFoundError("No code found in the answer.")
+        )
+
+        result = pandasai(pd.DataFrame(), "How many countries are in the dataframe?")
+        assert (
+            result
+            == "Unfortunately, I was not able to answer your question. Please try again. If the problem persists, try rephrasing your question."
+        )
+        assert pandasai.last_error == "No code found in the answer."
