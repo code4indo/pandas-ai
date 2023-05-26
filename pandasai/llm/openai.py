@@ -25,7 +25,8 @@ class OpenAI(BaseOpenAI):
     ]
     _supported_completion_models = ["text-davinci-003"]
 
-    model: str = "gpt-3.5-turbo"
+    #model: str = "gpt-3.5-turbo"
+    model: str = "gpt-4"
 
     def __init__(
         self,

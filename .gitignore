@@ -20,3 +20,18 @@ pandasai.egg-info
 
 # pycharm
 .idea/
+
+
+# ignore csv files 
+*.csv
+
+
+# ignore images
+*.png 
+
+
+# ignore checkpoint
+.ipynb_checkpoints/
+
+# ignore txt files
+*.txt
