@@ -7,6 +7,8 @@ END_CODE_TAG = "<endCode>"
 WHITELISTED_LIBRARIES = [
     "numpy",
     "matplotlib",
+    "seaborn",
+    "scikit-learn",
 ]
 WHITELISTED_BUILTINS = [
     "abs",
