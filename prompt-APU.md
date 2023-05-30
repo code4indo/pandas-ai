@@ -64,8 +64,8 @@ Lakukan perhitungan statistik deskriptif dengan menghitung nilai rata-rata, nila
 Tampilkan transaksi yang banyak dilakukan dalam waktu yang relatif singkat berdasarkan NamaPEASource dan NamaPEADestination yang beresiko tinggi sebagai pencucian uang
 
 3.	Analisis Jenis Transaksi
-Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang berdasarkan jenis laporan gambarkan dalam sebuah mindmap
-Temukan pola-pola tertentu yang menunjukkan modus dari pendanaan teroris gambarkan dalam sebuah mindmap
+Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang berdasarkan jenis laporan gambarkan dalam sebuah mindmap   
+Temukan pola-pola tertentu yang menunjukkan modus dari pendanaan teroris gambarkan dalam sebuah mindmap   
 Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang yang dilakukan antar lembaga selain lembaga keuangan dan gambarkan dalam sebuah mindmap
 
 4.	Analisis Geografis
