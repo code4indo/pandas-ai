@@ -44,6 +44,8 @@ Dalam tugas prediksi data, library Pandas sering digunakan untuk mempersiapkan d
 
 Fungsi-fungsi di atas sangat umum digunakan dalam analisis dan prediksi data dengan Pandas. 
 
+### Visualisasi Data
+
 Pandas secara native memiliki kemampuan untuk melakukan visualisasi data sederhana, namun untuk visualisasi yang lebih kompleks biasanya digabungkan dengan library seperti Matplotlib atau Seaborn. Berikut ini beberapa fungsi yang paling umum digunakan dalam visualisasi data:
 
 | Fungsi  | Deskripsi | Prompt/Instruksi |
