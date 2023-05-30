@@ -63,7 +63,7 @@ Pandas secara native memiliki kemampuan untuk melakukan visualisasi data sederha
 
 Perlu dicatat bahwa fungsi-fungsi ini hanya sebagian kecil dari yang tersedia dalam library Python untuk visualisasi data. Selalu ingat untuk memahami data Anda dan memilih jenis visualisasi yang paling tepat.
 
-### Jenis Plot 
+### Jenis Plot Library Matplotlib
 
 Matplotlib adalah library visualisasi di Python yang sangat serbaguna dan dapat digunakan untuk membuat berbagai jenis plot atau grafik. Berikut adalah beberapa jenis plot yang umum digunakan, beserta fungsinya:
 
@@ -80,6 +80,25 @@ Matplotlib adalah library visualisasi di Python yang sangat serbaguna dan dapat 
 | Contour Plot | Digunakan untuk memvisualisasikan tiga variabel numerik dalam dua dimensi. Satu variabel diplot pada sumbu x dan y, dan variabel ketiga diwakili oleh kontur.|
 
 Perlu dicatat bahwa jenis plot yang tepat akan bergantung pada jenis data dan pertanyaan penelitian atau analisis yang ingin dijawab.
+
+### Jenis Plot Library Seaborn
+Seaborn adalah library visualisasi data di Python yang dibangun di atas Matplotlib. Seaborn memperluas fungsi Matplotlib dan memudahkan pembuatan plot yang lebih kompleks dan informatif. Berikut beberapa jenis plot yang dapat dibuat dengan Seaborn dan fungsinya:
+
+| Jenis Plot | Fungsi |
+|------------|--------|
+| Distplot | Memvisualisasikan distribusi univariat (satu variabel) dalam bentuk histogram dan KDE (Kernel Density Estimation).|
+| Jointplot | Memvisualisasikan hubungan antara dua variabel dan distribusi masing-masing variabel. Dapat digunakan untuk membuat scatterplot, hexbin plot, dan banyak jenis plot lainnya.|
+| Pairplot | Membuat matriks plot untuk memvisualisasikan hubungan bivariat antara setiap pasangan variabel dalam dataset. |
+| Boxplot | Sama seperti di Matplotlib, Boxplot di Seaborn digunakan untuk menampilkan statistik ringkasan seperti kuartil dan outlier.|
+| Violinplot | Mirip dengan boxplot, tetapi juga mencakup kernel density estimation (KDE) untuk menunjukkan distribusi data.|
+| Heatmap | Digunakan untuk memvisualisasikan data matriks. Warna berbeda merepresentasikan level intensitas data.|
+| Barplot | Membandingkan kuantitas variabel kategorikal. Dalam beberapa kasus, dapat juga digunakan untuk menampilkan perubahan variabel sepanjang waktu.|
+| Countplot | Spesifik untuk Seaborn, plot ini digunakan untuk menunjukkan jumlah pengamatan dalam setiap bin kategorikal. |
+| FacetGrid | Digunakan untuk memvisualisasikan distribusi variabel dan hubungan antar variabel dalam dataset, menggunakan subplot yang dipetakan ke kolom dan baris kategori.|
+| lmplot | Plot ini digunakan untuk menampilkan model regresi linier antara dua variabel dengan scatterplot dan garis regresi.|
+
+Meski banyak plot di Seaborn yang mirip dengan Matplotlib, Seaborn memiliki fitur lebih untuk mempermudah analisis statistik dan pengeksplorasi data.
+
 
 
 
