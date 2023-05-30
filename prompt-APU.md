@@ -55,3 +55,18 @@ Berikut adalah beberapa ide untuk memanfaatkan kolom-kolom yang tersedia:
 Setelah menemukan pola atau indikator potensial pencucian uang, Anda dapat menggunakan teknik machine learning untuk membuat model prediktif. Misalnya, Anda bisa menggunakan algoritma klasifikasi untuk memprediksi apakah transaksi tertentu mencurigakan atau tidak berdasarkan fitur yang telah Anda identifikasi.
 
 
+
+**prompt untuk dicoba**
+1.	Analisis Statistik Deskriptif
+Lakukan perhitungan statistik deskriptif dengan menghitung nilai rata-rata, nilai median, nilai modus, dan rentang transaksi berdasarkan nilai transaksi antara PEASource dan PEADestination yang menghasilkan rentang sangat tinggi atau sangat rendah, lalu buat dalam daftar Kemudian buat grafiknya.
+
+2.	Analisis Frekuensi Transaksi 
+Tampilkan transaksi yang banyak dilakukan dalam waktu yang relatif singkat berdasarkan NamaPEASource dan NamaPEADestination yang beresiko tinggi sebagai pencucian uang
+
+3.	Analisis Jenis Transaksi
+Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang berdasarkan jenis laporan gambarkan dalam sebuah mindmap
+Temukan pola-pola tertentu yang menunjukkan modus dari pendanaan teroris gambarkan dalam sebuah mindmap
+Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang yang dilakukan antar lembaga selain lembaga keuangan dan gambarkan dalam sebuah mindmap
+
+4.	Analisis Geografis
+Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang lintas negara antara negaraSource dan NegaraDest dengan nilai transaksi di atas 3 milyar dalam waktu yang sangat dekat
