@@ -69,4 +69,4 @@ Temukan pola-pola tertentu yang menunjukkan modus dari pendanaan teroris gambark
 Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang yang dilakukan antar lembaga selain lembaga keuangan dan gambarkan dalam sebuah mindmap
 
 4.	Analisis Geografis   
-Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang lintas negara antara negaraSource dan NegaraDest dengan nilai transaksi di atas 3 milyar dalam waktu yang sangat dekat
+Temukan pola-pola tertentu yang menunjukkan modus dari pencucian uang lintas negara antara negaraSource dan NegaraDestination dengan nilai transaksi di atas 3 milyar dalam waktu yang sangat dekat
