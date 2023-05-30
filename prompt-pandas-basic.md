@@ -63,5 +63,23 @@ Pandas secara native memiliki kemampuan untuk melakukan visualisasi data sederha
 
 Perlu dicatat bahwa fungsi-fungsi ini hanya sebagian kecil dari yang tersedia dalam library Python untuk visualisasi data. Selalu ingat untuk memahami data Anda dan memilih jenis visualisasi yang paling tepat.
 
+### Jenis Plot 
+
+Matplotlib adalah library visualisasi di Python yang sangat serbaguna dan dapat digunakan untuk membuat berbagai jenis plot atau grafik. Berikut adalah beberapa jenis plot yang umum digunakan, beserta fungsinya:
+
+| Jenis Plot | Fungsi |
+|------------|--------|
+| Line Plot | Biasa digunakan untuk menampilkan tren data sepanjang waktu. Setiap titik data dihubungkan oleh garis lurus.|
+| Bar Plot/Bar Chart | Digunakan untuk membandingkan kuantitas variabel kategorikal. Dalam beberapa kasus, dapat juga digunakan untuk menampilkan perubahan variabel sepanjang waktu.|
+| Histogram | Digunakan untuk memvisualisasikan distribusi data. Ini adalah cara yang baik untuk memahami distribusi dan frekuensi data numerik.|
+| Scatter Plot | Digunakan untuk memvisualisasikan hubungan antara dua variabel numerik. Setiap titik pada plot mewakili satu observasi dalam dataset.|
+| Pie Chart | Digunakan untuk memvisualisasikan proporsi kategori dalam keseluruhan. Setiap irisan pie mewakili satu kategori.|
+| Box Plot | Digunakan untuk menampilkan statistik ringkasan seperti kuartil dan outlier. Box plot adalah cara yang baik untuk menggambarkan variabilitas data.|
+| Area Plot | Digunakan untuk memvisualisasikan distribusi data sepanjang waktu atau variabel lain. Merupakan variasi dari line plot, di mana area di bawah garis diisi.|
+| Heatmap | Digunakan untuk memvisualisasikan matriks korelasi atau tabel frekuensi silang. Warna berbeda merepresentasikan level intensitas data.|
+| Contour Plot | Digunakan untuk memvisualisasikan tiga variabel numerik dalam dua dimensi. Satu variabel diplot pada sumbu x dan y, dan variabel ketiga diwakili oleh kontur.|
+
+Perlu dicatat bahwa jenis plot yang tepat akan bergantung pada jenis data dan pertanyaan penelitian atau analisis yang ingin dijawab.
+
 
 
